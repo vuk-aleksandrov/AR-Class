@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView1);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView1, homeFragment).addToBackStack("name").commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView1, homeFragment).commit();
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
