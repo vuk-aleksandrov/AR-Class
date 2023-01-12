@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:paddingRight="20dp"
-            android:src = "@drawable/ic_baseline_add_24"
+            android:src = "@drawable/plus"
             android:background="@color/transparent"
             />
     </androidx.appcompat.widget.Toolbar>

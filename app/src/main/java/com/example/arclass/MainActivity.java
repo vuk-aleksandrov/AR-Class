@@ -3,6 +3,7 @@ package com.example.arclass;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -36,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView1, searchFragment).addToBackStack("name").commit();
                         return true;
                     case R.id.add:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView1, addFragment).addToBackStack("name").commit();
+                        //getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView1, addFragment).addToBackStack("name").commit();
+                        startActivity(new Intent(MainActivity.this, CreateNewLesson_Activity.class));
                         return true;
                 }
                 return false;

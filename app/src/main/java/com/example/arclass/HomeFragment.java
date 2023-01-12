@@ -36,8 +36,6 @@ public class HomeFragment extends Fragment {
 
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -79,16 +77,6 @@ public class HomeFragment extends Fragment {
                 id[0]++;
             }
         });
-
-        for(int i = 0; i < 1000; i++)
-        {
-            createPresentationHolder(layout, width, height, id[0]);
-            addFakeObjectOnLayout(width, 4, layout);
-            id[0]++;
-        }
-
-
-
     }
 
     public void createPresentationHolder(LinearLayout presentationHolder, int width, int height, int id)

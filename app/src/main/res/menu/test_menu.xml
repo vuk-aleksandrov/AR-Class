@@ -3,6 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/addButton"
         android:title="dodaj"
-        android:icon="@drawable/ic_baseline_add_24"/>
+        android:icon="@drawable/plus"/>
 
 </menu>
