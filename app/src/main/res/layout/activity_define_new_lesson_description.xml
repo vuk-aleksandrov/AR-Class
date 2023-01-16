@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DefineNewLessonDescription_Activity">
+
+    <ImageButton
+        android:id="@+id/go_back_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/clear"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.026" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="271dp"
+        android:layout_height="42dp"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:text="Create Your Lesson"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.092" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="321dp"
+        android:layout_height="34dp"
+        android:gravity="center"
+
+        android:text="Lesson contains AR models with description for making school more fun!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.045" />
+
+    <EditText
+        android:id="@+id/lesson_name_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="LESSON NAME"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.233"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        app:layout_constraintVertical_bias="0.163" />
+
+    <EditText
+        android:id="@+id/lesson_description_edit_text"
+        android:layout_width="321dp"
+        android:layout_height="166dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:hint="LESSON DESCRIPTION"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lesson_name_edit_text"
+        app:layout_constraintVertical_bias="0.152" />
+
+    <ImageButton
+        android:id="@+id/continue_button"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/forward_arrow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.958"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.953" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

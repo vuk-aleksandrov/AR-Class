@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.ar.sceneform.rendering.ViewRenderable;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.add:
                         //getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView1, addFragment).addToBackStack("name").commit();
-                        startActivity(new Intent(MainActivity.this, CreateNewLesson_Activity.class));
+
+                        // Open new activity for configuring lesson data(models and it's info)
+                        startActivity(new Intent(MainActivity.this, ConfigureARModelInfo_Activity.class));
                         return true;
                 }
                 return false;
