@@ -33,6 +33,7 @@ import com.google.ar.sceneform.ux.BaseArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 
 import java.lang.ref.WeakReference;
+import java.util.ArrayList;
 
 public class AR_Model_Info_Activity extends AppCompatActivity implements
         FragmentOnAttachListener,
@@ -82,11 +83,18 @@ public class AR_Model_Info_Activity extends AppCompatActivity implements
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //MyLessons.newLesson.newModel=new AR_ModelData();
+                MyLessons.newLesson.models.add(MyLessons.newLesson.newModel);
+
+                SelectModels_Activity.modelAdapter.notifyDataSetChanged();
+                SelectModels_Activity.modelList.scheduleLayoutAnimation();
+
                 finish();
             }
         });
 
-        loadModel(SelectModels_Activity.lastSelectedModelUri);
+        loadModel(MyLessons.newLesson.newModel.uri);
     }
 
     @Override

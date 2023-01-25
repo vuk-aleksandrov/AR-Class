@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import java.util.ArrayList;
+
 public class Lesson_Info_Activity extends AppCompatActivity {
 
     @Override
@@ -35,6 +37,8 @@ public class Lesson_Info_Activity extends AppCompatActivity {
 
                 MyLessons.newLesson.name=lessonName.getText().toString();
                 MyLessons.newLesson.info=lessonInfo.getText().toString();
+
+                MyLessons.newLesson.models=new ArrayList<>();
 
                 startActivity(new Intent(Lesson_Info_Activity.this, SelectModels_Activity.class));
             }

@@ -37,26 +37,24 @@ public class ModelText_Fragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ImageButton clearButton=view.findViewById(R.id.cancel_button);
-        clearButton.setOnClickListener(new View.OnClickListener() {
+        TextView lessonNameText=view.findViewById(R.id.lesson_name_text);
+        lessonNameText.setText(MyLessons.newLesson.name);
+
+        EditText modelName = view.findViewById(R.id.model_name_edit_text);
+        EditText smallInfo = view.findViewById(R.id.model_info_small_edit_text);
+        EditText info      = view.findViewById(R.id.model_info_edit_text);
+
+        ImageButton cancelButton =view.findViewById(R.id.cancel_button);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                MyLessons.newLesson.newModel.name=modelName.getText().toString();
+                MyLessons.newLesson.newModel.smallInfo=smallInfo.getText().toString();
+                MyLessons.newLesson.newModel.info=info.getText().toString();
+
                 getActivity().getSupportFragmentManager().beginTransaction().remove(ModelText_Fragment.this).commit();
             }
         });
-
-        TextView lessonNameText=view.findViewById(R.id.lesson_name_text);
-        lessonNameText.setText("Neka lekcija");
-
-        EditText modelNameEditText=view.findViewById(R.id.model_name_edit_text);
-        String modelName=modelNameEditText.getText().toString();
-
-        EditText modelInfoSmallEditText=view.findViewById(R.id.model_info_small_edit_text);
-        String modelInfoSmall=modelInfoSmallEditText.getText().toString();
-
-        EditText modelInfoEditText=view.findViewById(R.id.model_info_edit_text);
-        String modelInfo=modelInfoEditText.getText().toString();
-
-
     }
 }

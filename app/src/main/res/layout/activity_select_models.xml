@@ -50,9 +50,9 @@
         app:layout_constraintVertical_bias="0.045" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="409dp"
-        android:layout_height="455dp"
+        android:id="@+id/model_card_holder"
+        android:layout_width="412dp"
+        android:layout_height="491dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

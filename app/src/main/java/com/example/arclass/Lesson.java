@@ -5,8 +5,11 @@ import java.util.ArrayList;
 public class Lesson {
     public String name, info;
     public ArrayList<AR_ModelData> models;
+    public AR_ModelData newModel;
 
-    public AR_ModelData lastModel() {
-        return models.get(models.size()-1);
+    public void addCreatedModel() {
+        newModel.name="shit";
+        models.add(newModel);
+        // newModel=null;
     }
 }
