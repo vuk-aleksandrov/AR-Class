@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="transparent">#00FD0000</color>
     <color name="yellow">#DACF06</color>
+    <color name="blueLight">#03A9F4</color>
+    <color name="greyBlue">#C5EDFF</color>
 </resources>

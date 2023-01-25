@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -24,7 +25,6 @@
         app:layout_constraintVertical_bias="0.0"
         >
 
-
         <TextView
             android:textColor="@color/white"
             android:id="@+id/toolbar_title"
@@ -41,39 +41,14 @@
             >
 
         </TextView>
-        <ImageButton
-            android:id="@+id/addButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:paddingRight="20dp"
-            android:src = "@drawable/plus"
-            android:background="@color/transparent"
-            />
     </androidx.appcompat.widget.Toolbar>
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lessonContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-
-        android:layout_below="@id/toolbar">
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            >
-
-            <LinearLayout
-                android:id="@+id/placeForPresentations"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:orientation="vertical"></LinearLayout>
-        </ScrollView>
-
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_marginBottom="58dp"
+        />
 
 
-</RelativeLayout>
+</LinearLayout>
