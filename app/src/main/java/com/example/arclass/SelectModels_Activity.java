@@ -4,29 +4,30 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class SelectModelsForNewLesson_Activity extends AppCompatActivity implements ModelPlace_BottomSheetDialog.BottomSheetListener {
+public class SelectModels_Activity extends AppCompatActivity implements ModelPlace_BottomSheetDialog.BottomSheetListener {
 
     Intent intent;
+
+    public static String lastSelectedModelUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_models_for_new_lesson);
+        setContentView(R.layout.activity_select_models);
 
         ImageButton goBackButton=findViewById(R.id.go_back_button);
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SelectModelsForNewLesson_Activity.this, DefineNewLessonDescription_Activity.class));
+
+                finish();
             }
         });
 
@@ -42,12 +43,9 @@ public class SelectModelsForNewLesson_Activity extends AppCompatActivity impleme
 
     @Override
     public void onGoToStorageClicked() {
-        Toast.makeText(getApplicationContext(), "clicked", Toast.LENGTH_SHORT).show();
         intent=new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
         startActivityForResult(intent, 1);
-
-        // Open AR Model and configure model info
 
     }
 
@@ -60,8 +58,11 @@ public class SelectModelsForNewLesson_Activity extends AppCompatActivity impleme
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode== Activity.RESULT_OK) {
             //if(data==null) return;
-            Uri fileUri=data.getData();
-            Toast.makeText(getApplicationContext(), fileUri.toString(), Toast.LENGTH_SHORT).show();
+            lastSelectedModelUri=data.getData().toString();
+            Toast.makeText(getApplicationContext(), lastSelectedModelUri, Toast.LENGTH_SHORT).show();
+
+            // Open AR Model and configure model info
+            startActivity(new Intent(SelectModels_Activity.this, AR_Model_Info_Activity.class));
         }
     }
 }

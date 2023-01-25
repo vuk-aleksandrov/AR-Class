@@ -11,9 +11,6 @@ import androidx.fragment.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -21,16 +18,13 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
-
-public class HomeFragment extends Fragment {
+public class Home_Fragment extends Fragment {
 
 
     LinearLayout placeForPresentations;
     String yellow_color = "#FFDACF06";
 
-    public HomeFragment()
+    public Home_Fragment()
     {
 
 

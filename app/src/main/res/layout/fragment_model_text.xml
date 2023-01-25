@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:alpha="0.7"
+    android:orientation="vertical"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp"
+    android:id="@+id/fragment_add_model_text"
+    tools:context=".ModelText_Fragment">
+
+    <TextView
+        android:id="@+id/lesson_name_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lesson Name"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.125" />
+
+    <EditText
+        android:id="@+id/model_name_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Model Name"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lesson_name_text"
+        app:layout_constraintVertical_bias="0.055" />
+
+    <EditText
+        android:id="@+id/model_info_small_edit_text"
+        android:layout_width="316dp"
+        android:layout_height="144dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Small model info(date or place of creation...)"
+        android:inputType="textMultiLine"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/model_name_edit_text"
+        app:layout_constraintVertical_bias="0.068" />
+
+    <EditText
+        android:id="@+id/model_info_edit_text"
+        android:layout_width="357dp"
+        android:layout_height="286dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:hint="Bigger model info"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/model_info_small_edit_text"
+        app:layout_constraintVertical_bias="0.627" />
+
+    <ImageButton
+        android:id="@+id/cancel_button"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/clear1"
+        app:layout_constraintBottom_toTopOf="@+id/lesson_name_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.326" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

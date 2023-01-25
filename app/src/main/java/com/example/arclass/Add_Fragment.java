@@ -7,9 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-public class AddFragment extends Fragment {
+public class Add_Fragment extends Fragment {
 
 
     @Override

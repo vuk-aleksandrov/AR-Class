@@ -9,14 +9,13 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
-import com.google.ar.sceneform.rendering.ViewRenderable;
 
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
-    HomeFragment homeFragment = new HomeFragment();
+    Home_Fragment homeFragment = new Home_Fragment();
     SearchFragment searchFragment = new SearchFragment();
-    AddFragment addFragment = new AddFragment();
+    Add_Fragment addFragment = new Add_Fragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,16 +31,16 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId())
                 {
                     case R.id.home:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView1, homeFragment).addToBackStack("name").commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView1, homeFragment).commit();
                         return true;
                     case R.id.search:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView1, searchFragment).addToBackStack("name").commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView1, searchFragment).commit();
                         return true;
                     case R.id.add:
                         //getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView1, addFragment).addToBackStack("name").commit();
 
                         // Open new activity for configuring lesson data(models and it's info)
-                        startActivity(new Intent(MainActivity.this, ConfigureARModelInfo_Activity.class));
+                        startActivity(new Intent(MainActivity.this, Lesson_Info_Activity.class));
                         return true;
                 }
                 return false;

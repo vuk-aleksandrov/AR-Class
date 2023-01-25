@@ -45,7 +45,25 @@
         </activity>
 
         <activity
-            android:name=".ConfigureARModelInfo_Activity"
+            android:exported="true"
+            android:name="com.example.arclass.Lesson_Info_Activity"
+            >
+            <intent-filter>
+                <action android:name="com.example.arclass.DefineNewLessonDescription_Activity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:exported="true"
+            android:name="com.example.arclass.SelectModels_Activity"
+            >
+            <intent-filter>
+                <action android:name="com.example.arclass.SelectModelsForNewLesson_Activity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".AR_Model_Info_Activity"
             android:exported="true">
 
             <meta-data
