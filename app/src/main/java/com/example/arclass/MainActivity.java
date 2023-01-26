@@ -35,10 +35,12 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId())
                 {
                     case R.id.home:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView1, homeFragment).commit();
+                        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_left_right_anim, R.anim.exit_left_right_anim,
+                                R.anim.enter_right_left_anim, R.anim.exit_right_left_anim).replace(R.id.fragmentContainerView1, homeFragment).commit();
                         return true;
                     case R.id.search:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView1, searchFragment).commit();
+                        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enter_right_left_anim, R.anim.exit_right_left_anim,
+                                R.anim.enter_left_right_anim, R.anim.exit_left_right_anim).replace(R.id.fragmentContainerView1, searchFragment).commit();
                         return true;
                     case R.id.add:
                         //getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView1, addFragment).addToBackStack("name").commit();
