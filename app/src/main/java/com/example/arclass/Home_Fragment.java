@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,7 +21,10 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Home_Fragment extends Fragment {
 
@@ -69,7 +73,57 @@ public class Home_Fragment extends Fragment {
         layout.setAdapter(lessonAdapter);
         //lessonAdapter.notifyDataSetChanged();
 
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(layout);
     }
 
+    Lesson deletedModel = null;
+
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN | ItemTouchHelper.START | ItemTouchHelper.END, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            int fromPosition = viewHolder.getAdapterPosition();
+            int toPostition = target.getAdapterPosition();
+
+            Collections.swap(lessonList, fromPosition, toPostition);
+            layout.getAdapter().notifyItemMoved(fromPosition, toPostition);
+
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int positon = viewHolder.getAdapterPosition();
+            switch (direction)
+            {
+                case ItemTouchHelper.LEFT:
+                    deletedModel = lessonList.get(positon);
+                    lessonList.remove(positon);
+                    lessonAdapter.notifyItemRemoved(positon);
+                    Snackbar.make(layout, String.valueOf(deletedModel.name) + " Lessson deleted", Snackbar.LENGTH_LONG)
+                            .setAction("Undo", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    lessonList.add(positon, deletedModel);
+                                    lessonAdapter.notifyItemInserted(positon);
+                                }
+                            }).show();
+                    break;
+                case ItemTouchHelper.RIGHT:
+                    deletedModel = lessonList.get(positon);
+                    lessonList.remove(positon);
+                    lessonAdapter.notifyItemRemoved(positon);
+                    Snackbar.make(layout, String.valueOf(deletedModel.name) + " Lessson deleted", Snackbar.LENGTH_LONG)
+                            .setAction("Undo", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    lessonList.add(positon, deletedModel);
+                                    lessonAdapter.notifyItemInserted(positon);
+                                }
+                            }).show();
+                    break;
+            }
+        }
+    };
 
 }

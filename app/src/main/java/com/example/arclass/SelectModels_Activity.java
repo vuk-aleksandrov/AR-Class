@@ -108,7 +108,7 @@ public class SelectModels_Activity extends AppCompatActivity implements ModelPla
                     deletedModel = MyLessons.newLesson.models.get(positon);
                     MyLessons.newLesson.models.remove(positon);
                     modelAdapter.notifyItemRemoved(positon);
-                    Snackbar.make(modelList, String.valueOf(deletedModel.name) + " Lesson deleted", Snackbar.LENGTH_LONG)
+                    Snackbar.make(modelList, String.valueOf(deletedModel.name) + " Model deleted", Snackbar.LENGTH_LONG)
                             .setAction("Undo", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -121,7 +121,7 @@ public class SelectModels_Activity extends AppCompatActivity implements ModelPla
                     deletedModel = MyLessons.newLesson.models.get(positon);
                     MyLessons.newLesson.models.remove(positon);
                     modelAdapter.notifyItemRemoved(positon);
-                    Snackbar.make(modelList, String.valueOf(deletedModel.name) + " Lesson deleted", Snackbar.LENGTH_LONG)
+                    Snackbar.make(modelList, String.valueOf(deletedModel.name) + " Model deleted", Snackbar.LENGTH_LONG)
                             .setAction("Undo", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
