@@ -5,6 +5,7 @@
     app:cardBackgroundColor="@color/greyBlue"
     android:layout_width="match_parent"
     android:layout_height="160dp"
+    android:id="@+id/cardViewId"
     app:cardCornerRadius="15dp"
     android:layout_marginRight="20dp"
     android:layout_marginLeft="20dp"
@@ -19,6 +20,7 @@
         android:layout_height="150dp"
         app:cardCornerRadius="15dp"
         android:layout_margin="5dp"
+        android:id="@+id/cardViewId2"
         >
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,6 +66,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     />
+                <TextView
+                    android:text="U nasem starom zutom soliteru price idu u istom smeru svi govore da si ledenaaaa. A kad te vide ti si uvak sama neces ni da pricas s nama, bas si slatka i vrlo dosadnaaaa"
+                    android:id="@+id/someHiddenText"
+                    android:layout_below="@id/presentationDescription"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="dugmence"
+                    android:textColor="@color/black"
+                    android:id = "@+id/playLessonButton"
+                    android:backgroundTint="@color/white"
+                    android:visibility="gone"
+                    >
+
+                </Button>
             </LinearLayout>
 
 

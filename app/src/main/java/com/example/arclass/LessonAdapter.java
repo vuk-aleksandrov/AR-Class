@@ -2,12 +2,16 @@ package com.example.arclass;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -38,12 +42,44 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
         String ime = lessonData.name;
         holder.lessonName.setText(ime);
 
+        holder.playLessonButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), AR_Lesson_Activity.class);
+                intent.putExtra("LEKCIJA", position);
+                view.getContext().startActivity(intent);
+            }
+        });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
+            public void onClick(View view) {
+                /*Intent intent = new Intent(view.getContext(), MainActivity2.class);
+                intent.putExtra("name", klasa);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                view.getContext().startActivity(intent);*/
 
+                if(holder.someText.getVisibility() == View.VISIBLE)
+                {
+                    holder.someText.setVisibility(View.GONE);
+                    holder.playLessonButton.setVisibility(View.GONE);
+                    holder.card.getLayoutParams().height = 400;
+                    holder.card2.getLayoutParams().height = 400;
+                    holder.card.requestLayout();
+                    holder.card2.requestLayout();
+                }
+                else
+                {
+                    holder.playLessonButton.setVisibility(View.VISIBLE);
+                    holder.someText.setVisibility(View.VISIBLE);
+                    holder.card.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                    holder.card2.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                    holder.card2.requestLayout();
+                    holder.card.requestLayout();
+                }
+
+
+                Toast.makeText(view.getContext(), ime, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -56,11 +92,16 @@ public class LessonAdapter extends RecyclerView.Adapter<LessonAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView lessonName, lessonDescription;
+        TextView lessonName, lessonDescription, someText;
+        CardView card, card2;
 
+        Button playLessonButton;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            card2 = itemView.findViewById(R.id.cardViewId2);
+            card = itemView.findViewById(R.id.cardViewId);
+            someText = itemView.findViewById(R.id.someHiddenText);
+            playLessonButton = itemView.findViewById(R.id.playLessonButton);
             lessonName = itemView.findViewById(R.id.presentationName);
             lessonDescription = itemView.findViewById(R.id.presentationDescription);
 

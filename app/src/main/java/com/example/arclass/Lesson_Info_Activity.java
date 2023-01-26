@@ -23,7 +23,7 @@ public class Lesson_Info_Activity extends AppCompatActivity {
         goBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyLessons.newLesson=null;
+                //MyLessons.newLesson=null;
                 finish();
             }
         });
@@ -41,7 +41,9 @@ public class Lesson_Info_Activity extends AppCompatActivity {
                 MyLessons.newLesson.models=new ArrayList<>();
 
                 startActivity(new Intent(Lesson_Info_Activity.this, SelectModels_Activity.class));
+                finish();
             }
+
         });
     }
 }

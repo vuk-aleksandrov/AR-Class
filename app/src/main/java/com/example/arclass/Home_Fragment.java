@@ -59,19 +59,10 @@ public class Home_Fragment extends Fragment {
 
         layout = view.findViewById(R.id.lessonContainer);
 
-        lessonList = new ArrayList<Lesson>();
-        lessonAdapter = new LessonAdapter(getContext(), lessonList);
-
-        for(int i = 0; i < 10; i++)
-        {
-            Lesson aa = new Lesson();
-            aa.name = String.valueOf(i);
-            lessonList.add(aa);
-        }
+        lessonAdapter = new LessonAdapter(getContext(), MyLessons.lessons);
 
         layout.setLayoutManager(new LinearLayoutManager(getContext()));
         layout.setAdapter(lessonAdapter);
-        //lessonAdapter.notifyDataSetChanged();
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
         itemTouchHelper.attachToRecyclerView(layout);
@@ -85,7 +76,7 @@ public class Home_Fragment extends Fragment {
             int fromPosition = viewHolder.getAdapterPosition();
             int toPostition = target.getAdapterPosition();
 
-            Collections.swap(lessonList, fromPosition, toPostition);
+            Collections.swap(MyLessons.lessons, fromPosition, toPostition);
             layout.getAdapter().notifyItemMoved(fromPosition, toPostition);
 
             return false;
@@ -97,27 +88,27 @@ public class Home_Fragment extends Fragment {
             switch (direction)
             {
                 case ItemTouchHelper.LEFT:
-                    deletedModel = lessonList.get(positon);
-                    lessonList.remove(positon);
+                    deletedModel = MyLessons.lessons.get(positon);
+                    MyLessons.lessons.remove(positon);
                     lessonAdapter.notifyItemRemoved(positon);
                     Snackbar.make(layout, String.valueOf(deletedModel.name) + " Lessson deleted", Snackbar.LENGTH_LONG)
                             .setAction("Undo", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    lessonList.add(positon, deletedModel);
+                                    MyLessons.lessons.add(positon, deletedModel);
                                     lessonAdapter.notifyItemInserted(positon);
                                 }
                             }).show();
                     break;
                 case ItemTouchHelper.RIGHT:
-                    deletedModel = lessonList.get(positon);
-                    lessonList.remove(positon);
+                    deletedModel = MyLessons.lessons.get(positon);
+                    MyLessons.lessons.remove(positon);
                     lessonAdapter.notifyItemRemoved(positon);
                     Snackbar.make(layout, String.valueOf(deletedModel.name) + " Lessson deleted", Snackbar.LENGTH_LONG)
                             .setAction("Undo", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    lessonList.add(positon, deletedModel);
+                                    MyLessons.lessons.add(positon, deletedModel);
                                     lessonAdapter.notifyItemInserted(positon);
                                 }
                             }).show();

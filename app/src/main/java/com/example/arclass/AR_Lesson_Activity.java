@@ -10,11 +10,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.ar.core.Anchor;
 import com.google.ar.core.Config;
 import com.google.ar.core.HitResult;
@@ -34,13 +32,12 @@ import com.google.ar.sceneform.ux.BaseArFragment;
 import com.google.ar.sceneform.ux.TransformableNode;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 
-public class AR_Model_Info_Activity extends AppCompatActivity implements
+public class AR_Lesson_Activity extends AppCompatActivity implements
         FragmentOnAttachListener,
         BaseArFragment.OnTapArPlaneListener,
         BaseArFragment.OnSessionConfigurationListener,
-        ArFragment.OnViewCreatedListener {
+        ArFragment.OnViewCreatedListener{
 
     private ArFragment arFragment;
     private Renderable model;
@@ -49,7 +46,7 @@ public class AR_Model_Info_Activity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ar_model_info);
+        setContentView(R.layout.activity_ar_lesson);
 
         getSupportFragmentManager().addFragmentOnAttachListener(this);
 
@@ -61,41 +58,21 @@ public class AR_Model_Info_Activity extends AppCompatActivity implements
             }
         }
 
-        ImageButton goBackButton=findViewById(R.id.go_back_button);
-        goBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                finish();
-            }
-        });
+        Bundle extras = getIntent().getExtras();
+        int indx=-1;
+        if (extras != null) {
+            indx = extras.getInt("LEKCIJA");
+        }
 
-        ModelText_Fragment modelTextFragment=new ModelText_Fragment();
+        Lesson currLesson=MyLessons.lessons.get(indx);
+        AR_ModelData arModel=currLesson.models.get(0);
 
-        Button addTextButton=findViewById(R.id.add_text_button);
-        addTextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_add_text_container_view, modelTextFragment).commit();
-            }
-        });
 
-        Button finishButton=findViewById(R.id.finish_button);
-        finishButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        // Get model URL
 
-                MyLessons.newLesson.models.add(MyLessons.newLesson.newModel);
-                MyLessons.newLesson.newModel=new AR_ModelData();
+        loadModel(arModel.uri);
 
-                SelectModels_Activity.modelAdapter.notifyDataSetChanged();
-                SelectModels_Activity.modelList.scheduleLayoutAnimation();
-
-                finish();
-            }
-        });
-
-        loadModel(MyLessons.newLesson.newModel.uri);
     }
 
     @Override
@@ -126,14 +103,14 @@ public class AR_Model_Info_Activity extends AppCompatActivity implements
     public void loadModel(String modelUri) {
         Log.i("Model URI", modelUri);
         Toast.makeText(getBaseContext(),  modelUri , Toast.LENGTH_LONG).show();
-        WeakReference<AR_Model_Info_Activity> weakActivity = new WeakReference<>(this);
+        WeakReference<AR_Lesson_Activity> weakActivity = new WeakReference<>(this);
         ModelRenderable.builder()
                 .setSource(this, Uri.parse(modelUri))
                 .setIsFilamentGltf(true)
                 .setAsyncLoadEnabled(true)
                 .build()
                 .thenAccept(model -> {
-                    AR_Model_Info_Activity activity = weakActivity.get();
+                    AR_Lesson_Activity activity = weakActivity.get();
                     if (activity != null) {
                         activity.model = model;
                     }
@@ -147,7 +124,7 @@ public class AR_Model_Info_Activity extends AppCompatActivity implements
                 .setView(this, R.layout.ar_model_title)
                 .build()
                 .thenAccept(viewRenderable -> {
-                    AR_Model_Info_Activity activity = weakActivity.get();
+                    AR_Lesson_Activity activity = weakActivity.get();
                     if (activity != null) {
                         activity.viewRenderable = viewRenderable;
                     }

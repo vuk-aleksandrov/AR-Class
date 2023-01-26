@@ -8,16 +8,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,13 +35,12 @@ public class SelectModels_Activity extends AppCompatActivity implements ModelPla
     public static RecyclerView modelList;
     public static SelectModelsAdapter modelAdapter;
 
+    private boolean done;// means if a model is uploaded to cloud storage
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_models);
-
-
-        ArrayList<AR_ModelData> a=new ArrayList<>();
 
         modelAdapter=new SelectModelsAdapter(getApplicationContext(), MyLessons.newLesson.models);
 
@@ -48,24 +53,50 @@ public class SelectModels_Activity extends AppCompatActivity implements ModelPla
             @Override
             public void onClick(View view) {
 
-                finish();
+                startActivity(new Intent(SelectModels_Activity.this, Lesson_Info_Activity.class));
             }
         });
+
+        done=false;
 
         ImageButton finishButton=findViewById(R.id.finish_button);
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                MyLessons.newLesson.newModel=new AR_ModelData();
-                MyLessons.newLesson.newModel.name="shit";
-                MyLessons.newLesson.models.add(MyLessons.newLesson.newModel);
+                for(int i=0;i<MyLessons.newLesson.models.size();i++) {
 
-                modelAdapter.notifyDataSetChanged();
-                modelList.scheduleLayoutAnimation();
+                    int finalI = i;
+                    CloudStorage.storageRef.child("public/models/" + MyLessons.newLesson.models.get(i).name + ".glb")
+                            .putFile(Uri.parse(MyLessons.newLesson.models.get(i).uri))
+                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                //MyLessons.addCreatedLesson();
-                //finish();
+                                    CloudStorage.storageRef.child("public/models/" + MyLessons.newLesson.models.get(finalI).name + ".glb")
+                                            .getDownloadUrl()
+                                            .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                                @Override
+                                                public void onSuccess(Uri uri) {
+
+                                                    MyLessons.newLesson.models.get(0).uri = uri.toString();
+                                                    done=true;
+
+                                                    // Save new lesson
+                                                    MyLessons.lessons.add(MyLessons.newLesson);
+                                                    //MyLessons.newLesson=new Lesson();
+
+                                                    Home_Fragment.lessonAdapter.notifyDataSetChanged();
+                                                    Home_Fragment.layout.scheduleLayoutAnimation();
+
+                                                    finish();
+                                                }
+                                            });
+
+                                }
+                            });
+                    while(!done);
+                }
             }
         });
 
